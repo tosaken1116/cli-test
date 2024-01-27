@@ -10,8 +10,8 @@ runs:
         - name: Check if file exists
           run: |
               if [ -f ${{ inputs.path }} ]; then
-                echo "exists=true" >> $GITHUB_OUTPUT
+                echo "File exists"
               else
-                echo "exists=false" >> $GITHUB_OUTPUT
+                exit(1)
               fi
           shell: bash
