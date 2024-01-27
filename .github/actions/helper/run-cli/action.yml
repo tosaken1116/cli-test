@@ -25,6 +25,10 @@ inputs:
         description: "Initialize with eslint config"
         required: false
         default: "false"
+    biome:
+        description: "Initialize with biome config"
+        required: false
+        default: "false"
     app:
         description: "Initialize as an App Router project"
         required: false
@@ -105,5 +109,31 @@ runs:
               key: ${{ runner.os }}-build-${{ github.sha }}
         - name: Run cli
           run: |
-              npx create-template-next test ${{inputs.recommend=='true'&& '--recommend'||''}} ${{inputs.moonshot=='true'&& '--moonshot'||''}} ${{inputs.ts=='true'&& '--ts'||''}} ${{inputs.js=='true'&& '--js'||''}} ${{inputs.tailwind=='true'&& '--tailwind'||''}} ${{inputs.eslint=='true'&& '--eslint'||''}} ${{inputs.app=='true'&& '--app'||''}} ${{inputs.src-dir=='true'&& '--src-dir'||''}} --import-alias ${{inputs.import-alias}} ${{inputs.storybook=='true'&& '--storybook'||''}} ${{inputs.jest=='true'&& '--jest'||''}} ${{inputs.vitest=='true'&& '--vitest'||''}} ${{inputs.hygen=='true'&& '--hygen'||''}} ${{inputs.scaffdog=='true'&& '--scaffdog'||''}} ${{inputs.small=='true'&& '--small'||''}} ${{inputs.medium=='true'&& '--medium'||''}} ${{inputs.large=='true'&& '--large'||''}} ${{inputs.npm=='true'&& '--npm'||''}} ${{inputs.yarn=='true'&& '--yarn'||''}} ${{inputs.pnpm=='true'&& '--pnpm'||''}} ${{inputs.bun=='true'&& '--bun'||''}} ${{inputs.github-actions=='true'&& '--github-actions'||'--no-github-actions'}} ${{inputs.actions-all=='true'&& '--actions-all'||''}}
+              npx create-template-next test ${{inputs.recommend=='true'&& '--recommend'||''}} \
+                  ${{inputs.moonshot=='true'&& '--moonshot'||''}} \
+                  ${{inputs.ts=='true'&& '--ts'||'--no-ts'}} \
+                  ${{inputs.js=='true'&& '--js'||'--no-js'}} \
+                  ${{inputs.tailwind=='true'&& '--tailwind'||'--no-tailwind'}} \
+                  ${{inputs.eslint=='true'&& '--eslint'||''}} \
+                  ${{inputs.biome=='true'&& '--biome'||''}} \
+                  ${{inputs.eslint=='false' && inputs.biome=='false'&& '--no-lint'||''}} \
+                  ${{inputs.app=='true'&& '--app'||'--no-app'}} \
+                  ${{inputs.src-dir=='true'&& '--src-dir'||'--no-src-dir'}} \
+                  --import-alias ${{inputs.import-alias}} \
+                  ${{inputs.storybook=='true'&& '--storybook'||'--no-storybook'}} \
+                  ${{inputs.jest=='true'&& '--jest'||''}} \
+                  ${{inputs.vitest=='true'&& '--vitest'||''}} \
+                  ${{inputs.jest=='false' && inputs.vitest=='false'&& '--no-test'||''}} \
+                  ${{inputs.hygen=='true'&& '--hygen'||''}} \
+                  ${{inputs.scaffdog=='true'&& '--scaffdog'||''}} \
+                  ${{inputs.scaffdog=='false' && inputs.hygen=='false'&& '--no-gen'||''}} \
+                  ${{inputs.small=='true'&& '--small'||''}} \
+                  ${{inputs.medium=='true'&& '--medium'||''}} \
+                  ${{inputs.large=='true'&& '--large'||''}} \
+                  ${{inputs.npm=='true'&& '--npm'||''}} \
+                  ${{inputs.yarn=='true'&& '--yarn'||''}} \
+                  ${{inputs.pnpm=='true'&& '--pnpm'||''}} \
+                  ${{inputs.bun=='true'&& '--bun'||''}} \
+                  ${{inputs.github-actions=='true'&& '--github-actions'||'--no-github-actions'}} \
+                  ${{inputs.actions-all=='true'&& '--actions-all'||''}}
           shell: bash
