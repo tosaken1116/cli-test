@@ -17,8 +17,8 @@ jobs:
               with:
                   node-version: "21.x"
             - name: check recommend
-              uses: ./actions/test-recommend
+              uses: ./.github/actions/test-recommend
             - name: check moonshot
-              uses: ./actions/test-moonshot
+              uses: ./.github/actions/test-moonshot
             - name: check fail
-              uses: ./actions/fail
+              uses: ./.github/actions/fail
