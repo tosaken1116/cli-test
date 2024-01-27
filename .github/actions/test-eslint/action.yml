@@ -23,4 +23,4 @@ runs:
         - name: check workflow exists
           uses: ./.github/actions/helper/exist-file
           with:
-              path: .eslintrc.json
+              path: test/.eslintrc.json

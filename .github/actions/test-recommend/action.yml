@@ -22,4 +22,4 @@ runs:
         - name: check workflow exists
           uses: ./.github/actions/helper/exist-file
           with:
-              path: .github/workflows/ci.yml
+              path: test/.github/workflows/ci.yml
