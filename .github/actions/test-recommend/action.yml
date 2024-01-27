@@ -4,7 +4,9 @@ runs:
     using: "composite"
     steps:
         - uses: actions/checkout@v2
+        - uses: pnpm/action-setup@v2.2.2
         - name: Use Cached Dependencies
+
           uses: actions/cache@v4
           with:
               path: "**/dist"
