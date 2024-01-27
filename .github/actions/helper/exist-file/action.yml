@@ -1,0 +1,17 @@
+name: check file exists
+description: "Check if a file exists"
+inputs:
+    path:
+        description: "Path to file"
+        required: true
+runs:
+    using: "composite"
+    steps:
+        - name: Check if file exists
+          run: |
+              if [ -f ${{ inputs.path }} ]; then
+                echo "exists=true" >> $GITHUB_OUTPUT
+              else
+                echo "exists=false" >> $GITHUB_OUTPUT
+              fi
+          shell: bash
