@@ -13,6 +13,7 @@ runs:
           uses: ./.github/actions/helper/run-cli
           with:
               moonshot: "true"
+              small: "true"
         - name: check workflow exists
           uses: ./.github/actions/helper/exist-file
           with:
