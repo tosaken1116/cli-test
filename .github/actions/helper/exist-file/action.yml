@@ -12,6 +12,7 @@ runs:
               if [ -f ${{ inputs.path }} ]; then
                 echo "File exists"
               else
-                exit(1)
+                echo "File does not exist"
+                exit 1
               fi
           shell: bash
