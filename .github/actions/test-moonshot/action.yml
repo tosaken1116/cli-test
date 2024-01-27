@@ -10,9 +10,9 @@ runs:
               path: "**/dist"
               key: ${{ runner.os }}-build-${{ github.sha }}
         - name: Run cli
-          run: |
-              npx create-template-next hoge --moonshot
-          shell: bash
+          uses: ./.github/actions/helper/run-cli
+          with:
+              moonshot: "true"
         - name: check workflow exists
           uses: ./.github/actions/helper/exist-file
           with:

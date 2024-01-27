@@ -10,9 +10,10 @@ runs:
               path: "**/dist"
               key: ${{ runner.os }}-build-${{ github.sha }}
         - name: Run cli
-          run: |
-              npx create-template-next hoge --recommend
-          shell: bash
+          uses: ./.github/actions/helper/run-cli
+          with:
+              recommend: "true"
+              small: "true"
         - name: check workflow exists
           uses: ./.github/actions/helper/exist-file
           with:

@@ -1,0 +1,109 @@
+name: cli setup
+description: "Setup cli"
+inputs:
+    recommend:
+        description: "recommend option"
+        required: false
+        default: "false"
+    moonshot:
+        description: "moonshot option"
+        required: false
+        default: "false"
+    ts:
+        description: "Initialize as a TypeScript project"
+        required: false
+        default: "false"
+    js:
+        description: "Initialize as a JavaScript project"
+        required: false
+        default: "false"
+    tailwind:
+        description: "Initialize with Tailwind CSS config"
+        required: false
+        default: "false"
+    eslint:
+        description: "Initialize with eslint config"
+        required: false
+        default: "false"
+    app:
+        description: "Initialize as an App Router project"
+        required: false
+        default: "false"
+    src-dir:
+        description: "Initialize inside a `src/` directory"
+        required: false
+        default: "false"
+    import-alias:
+        description: 'Specify import alias to use (default "@/*")'
+        required: false
+        default: ""
+    storybook:
+        description: "Initialize with Storybook"
+        required: false
+        default: "false"
+    jest:
+        description: "Initialize with Jest"
+        required: false
+        default: "false"
+    vitest:
+        description: "Initialize with Vitest"
+        required: false
+        default: "false"
+    hygen:
+        description: "Initialize with Hygen"
+        required: false
+        default: "false"
+    scaffdog:
+        description: "Initialize with Scaffdog"
+        required: false
+        default: "false"
+    small:
+        description: "Initialize with small project size"
+        required: false
+        default: "false"
+    medium:
+        description: "Initialize with medium project size"
+        required: false
+        default: "false"
+    large:
+        description: "Initialize with large project size"
+        required: false
+        default: "false"
+    npm:
+        description: "Initialize with npm"
+        required: false
+        default: "false"
+    yarn:
+        description: "Initialize with Yarn"
+        required: false
+        default: "false"
+    pnpm:
+        description: "Initialize with pnpm"
+        required: false
+        default: "false"
+    bun:
+        description: "Initialize with bun"
+        required: false
+        default: "false"
+    github-actions:
+        description: "Initialize with GitHub Actions"
+        required: false
+        default: "false"
+    actions-all:
+        description: "Initialize with ALL GitHub Actions"
+        required: false
+        default: "false"
+
+runs:
+    using: "composite"
+    steps:
+        - uses: actions/checkout@v2
+        - name: Use Cached Dependencies
+          uses: actions/cache@v4
+          with:
+              path: "**/dist"
+              key: ${{ runner.os }}-build-${{ github.sha }}
+        - name: Run cli
+          run: |
+              npx create-template-next test ${{inputs.recommend=="true"? "--recommend":""}} ${{inputs.moonshot=="true"? "--moonshot":""}} ${{inputs.ts=="true"? "--ts":""}} ${{inputs.js=="true"? "--js":""}} ${{inputs.tailwind=="true"? "--tailwind":""}} ${{inputs.eslint=="true"? "--eslint":""}} ${{inputs.app=="true"? "--app":""}} ${{inputs.src-dir=="true"? "--src-dir":""}} ${{inputs.import-alias==""? "":`--import-alias ${inputs.import-alias}`}} ${{inputs.storybook=="true"? "--storybook":""}} ${{inputs.jest=="true"? "--jest":""}} ${{inputs.vitest=="true"? "--vitest":""}} ${{inputs.hygen=="true"? "--hygen":""}} ${{inputs.scaffdog=="true"? "--scaffdog":""}} ${{inputs.small=="true"? "--small":""}} ${{inputs.medium=="true"? "--medium":""}} ${{inputs.large=="true"? "--large":""}} ${{inputs.npm=="true"? "--npm":""}} ${{inputs.yarn=="true"? "--yarn":""}} ${{inputs.pnpm=="true"? "--pnpm":""}} ${{inputs.bun=="true"? "--bun":""}} ${{inputs.github-actions=="true"? "--github-actions":"--no-github-actions"}} ${{inputs.actions-all=="true"? "--actions-all":""}}
+          shell: bash
