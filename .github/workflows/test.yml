@@ -9,7 +9,16 @@ permissions:
 
 name: release-please
 jobs:
-    test:
+    test-moonshot:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "21.x"
+            - name: check moonshot
+              uses: ./.github/actions/test-moonshot
+    test-recommend:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -18,7 +27,3 @@ jobs:
                   node-version: "21.x"
             - name: check recommend
               uses: ./.github/actions/test-recommend
-            - name: check moonshot
-              uses: ./.github/actions/test-moonshot
-            - name: check fail
-              uses: ./.github/actions/fail
