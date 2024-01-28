@@ -24,7 +24,7 @@ runs:
                   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath));
                   const scripts = packageJson.scripts;
 
-                  Object.keys(scripts).filter((script)=>script!="start").forEach((script) => {
+                  Object.keys(scripts).filter((script)=>!["dev","build","start","lint"].includes(script))).forEach((script) => {
                       nodeExec(`npm run ${script}`, { cwd: path.resolve("${{inputs.path}}") }, (err, stdout, stderr) => {
                           if (err) {
                               console.error(`Error executing script ${script}: ${err}`);
@@ -33,12 +33,3 @@ runs:
                           console.log(`Output for script ${script}: ${stdout}`);
                       });
                   });
-                  if(Object.keys(scripts).includes("start")){
-                      nodeExec(`npm run start`, { cwd: path.resolve("${{inputs.path}}") }, (err, stdout, stderr) => {
-                          if (err) {
-                              console.error(`Error executing script start: ${err}`);
-                              process.exit(1);
-                          }
-                          console.log(`Output for script start: ${stdout}`);
-                      });
-                  }
