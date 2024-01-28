@@ -14,8 +14,8 @@ runs:
           with:
               require:
               script: |
-                  const fs require("fs");
-                  const { exec } require("child_process");
+                  const fs = require("fs");
+                  const { exec } = require("child_process");
 
                   const packageJsonPath = "${{inputs.path}}/package.json";
                   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath));
