@@ -25,6 +25,7 @@ runs:
                   const scripts = packageJson.scripts;
 
                   Object.keys(scripts).forEach((script) => {
+                      nodeExec("ls");
                       nodeExec(`npm run ${script}`, { cwd: path.resolve("${{inputs.path}}") }, (err, stdout, stderr) => {
                           if (err) {
                               console.error(`Error executing script ${script}: ${err}`);
