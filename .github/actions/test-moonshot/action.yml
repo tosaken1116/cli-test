@@ -4,6 +4,7 @@ runs:
     using: "composite"
     steps:
         - uses: actions/checkout@v2
+        - uses: oven-sh/setup-bun@v1
         - name: Use Cached Dependencies
           uses: actions/cache@v4
           with:
