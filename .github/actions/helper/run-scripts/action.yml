@@ -21,7 +21,7 @@ runs:
                   const scripts = packageJson.scripts;
 
                   Object.keys(scripts).forEach((script) => {
-                      exec(`npm run ${script}`, { cwd: path.resolve("${{inputs.path}}") }, (err, stdout, stderr) => {
+                      nodeExec(`npm run ${script}`, { cwd: path.resolve("${{inputs.path}}") }, (err, stdout, stderr) => {
                           if (err) {
                               console.error(`Error executing script ${script}: ${err}`);
                               process.exit(1);
