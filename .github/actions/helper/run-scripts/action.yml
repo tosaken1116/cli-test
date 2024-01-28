@@ -1,0 +1,11 @@
+name: "Run Package Scripts"
+description: "Run all scripts defined in package.json"
+inputs:
+    path:
+        description: "The path to the directory containing the package.json file"
+        required: true
+        default: "."
+
+runs:
+    using: "node20"
+    main: "index.js"

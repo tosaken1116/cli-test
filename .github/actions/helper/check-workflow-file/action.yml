@@ -1,0 +1,110 @@
+name: check workflow file generated successfully
+description: "Check if a workflow file exists"
+inputs:
+    lighthouse:
+        description: "Enable lighthouse"
+        required: false
+        default: "false"
+
+    lint:
+        description: "Enable lint"
+        required: false
+        default: "false"
+
+    test:
+        description: "Enable test"
+        required: false
+        default: "false"
+
+    code-diff:
+        description: "Enable code-diff"
+        required: false
+        default: "false"
+
+    bundle-size:
+        description: "Enable bundle-size"
+        required: false
+        default: "false"
+
+    install-dependencies:
+        description: "Enable install-dependencies"
+        required: false
+        default: "false"
+
+    build:
+        description: "Enable build"
+        required: false
+        default: "false"
+
+    useless-modules:
+        description: "Enable useless-modules"
+        required: false
+        default: "false"
+runs:
+    using: "composite"
+    steps:
+        - name: Check if workflow file exists
+          uses: ./.github/actions/helper/exist-file
+          with:
+              path: test/.github/workflows/ci.yml
+
+        - name: Check if workflow file generated successfully
+          uses: ./.github/actions/helper/text-include
+          with:
+              path: test/.github/workflows/ci.yml
+              text: "name: ci"
+
+        - name: Check if lighthouse context
+          uses: ./.github/actions/helper/text-include
+          with:
+              path: test/.github/workflows/ci.yml
+              text: "name: lighthouse"
+              not: ${{ !inputs.lighthouse}}
+
+        - name: Check if lint context
+          uses: ./.github/actions/helper/text-include
+          with:
+              path: test/.github/workflows/ci.yml
+              text: "name: lint"
+              not: ${{ !inputs.lint}}
+
+        - name: Check if test context
+          uses: ./.github/actions/helper/text-include
+          with:
+              path: test/.github/workflows/ci.yml
+              text: "name: test"
+              not: ${{ !inputs.test}}
+
+        - name: Check if code-diff context
+          uses: ./.github/actions/helper/text-include
+          with:
+              path: test/.github/workflows/ci.yml
+              text: "name: code-diff"
+              not: ${{ !inputs.code-diff}}
+        - name: Check if bundle-size context
+          uses: ./.github/actions/helper/text-include
+          with:
+              path: test/.github/workflows/ci.yml
+              text: "name: bundle-size"
+              not: ${{ !inputs.bundle-size}}
+
+        - name: Check if install-dependencies context
+          uses: ./.github/actions/helper/text-include
+          with:
+              path: test/.github/workflows/ci.yml
+              text: "name: install-dependencies"
+              not: ${{ !inputs.install-dependencies}}
+
+        - name: Check if build context
+          uses: ./.github/actions/helper/text-include
+          with:
+              path: test/.github/workflows/ci.yml
+              text: "name: build"
+              not: ${{ !inputs.build}}
+
+        - name: Check if useless-modules context
+          uses: ./.github/actions/helper/text-include
+          with:
+              path: test/.github/workflows/ci.yml
+              text: "name: useless-modules"
+              not: ${{ !inputs.useless-modules}}

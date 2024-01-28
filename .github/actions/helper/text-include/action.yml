@@ -1,0 +1,25 @@
+name: check text include
+description: "Check if a file contains a string"
+inputs:
+    path:
+        description: "Path to file"
+        required: true
+    text:
+        description: "The text to check for"
+        required: true
+    not:
+        description: "Check if text is not included"
+        required: false
+        default: "false"
+runs:
+    using: composite
+    steps:
+        - name: Check if file contains text
+          run: |
+              if grep -q "${{ inputs.text }}" ${{ inputs.path }}; then
+                echo "Text found"
+              else
+                echo "Text not found"
+                exit 1
+              fi
+          shell: bash
