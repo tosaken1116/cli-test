@@ -12,7 +12,7 @@ runs:
         - name: check all scripts are executable
           uses: actions/github-script@v6
           with:
-              scripts: |
+              script: |
                   import fs require("fs");
                   import { exec } require("child_process");
 
