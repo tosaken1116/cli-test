@@ -12,9 +12,10 @@ runs:
         - name: check all scripts are executable
           uses: actions/github-script@v6
           with:
+              require:
               script: |
-                  import fs require("fs");
-                  import { exec } require("child_process");
+                  const fs require("fs");
+                  const { exec } require("child_process");
 
                   const packageJsonPath = "${{inputs.path}}/package.json";
                   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath));
