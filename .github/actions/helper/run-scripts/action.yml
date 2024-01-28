@@ -9,6 +9,10 @@ inputs:
 runs:
     using: "composite"
     steps:
+        - name: set-node
+          uses: actions/setup-node@v2
+          with:
+              node-version: "20.x"
         - name: check all scripts are executable
           uses: actions/github-script@v6
           with:
