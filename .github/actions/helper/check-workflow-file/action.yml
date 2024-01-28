@@ -52,7 +52,7 @@ runs:
           uses: ./.github/actions/helper/text-include
           with:
               path: test/.github/workflows/ci.yml
-              text: "name: ci"
+              text: "name: CI"
 
         - name: Check if lighthouse context
           uses: ./.github/actions/helper/text-include
