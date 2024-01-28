@@ -19,3 +19,18 @@ runs:
           uses: ./.github/actions/helper/exist-file
           with:
               path: test/.github/workflows/ci.yml
+        - name: check workflow generated successfully
+          uses: ./.github/actions/helper/check-workflow-file
+          with:
+              path: test
+              lighthouse: "true"
+              lint: "true"
+              test: "true"
+              code-diff: "true"
+              bundle-size: "true"
+              install-dependencies: "true"
+              build: "true"
+        - name: run scripts successfully
+          uses: ./.github/actions/helper/run-scripts
+          with:
+              path: test

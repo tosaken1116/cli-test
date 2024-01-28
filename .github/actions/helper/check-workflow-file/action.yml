@@ -1,6 +1,10 @@
 name: check workflow file generated successfully
 description: "Check if a workflow file exists"
 inputs:
+    path:
+        description: "Path to file"
+        required: true
+
     lighthouse:
         description: "Enable lighthouse"
         required: false
@@ -46,65 +50,65 @@ runs:
         - name: Check if workflow file exists
           uses: ./.github/actions/helper/exist-file
           with:
-              path: test/.github/workflows/ci.yml
+              path: ${{inputs.path}}/.github/workflows/ci.yml
 
         - name: Check if workflow file generated successfully
           uses: ./.github/actions/helper/text-include
           with:
-              path: test/.github/workflows/ci.yml
+              path: ${{inputs.path}}/.github/workflows/ci.yml
               text: "name: CI"
 
         - name: Check if lighthouse context
           uses: ./.github/actions/helper/text-include
           with:
-              path: test/.github/workflows/ci.yml
+              path: ${{inputs.path}}/.github/workflows/ci.yml
               text: "lighthouse:"
               not: ${{ !inputs.lighthouse}}
 
         - name: Check if lint context
           uses: ./.github/actions/helper/text-include
           with:
-              path: test/.github/workflows/ci.yml
+              path: ${{inputs.path}}/.github/workflows/ci.yml
               text: "lint:"
               not: ${{ !inputs.lint}}
 
         - name: Check if test context
           uses: ./.github/actions/helper/text-include
           with:
-              path: test/.github/workflows/ci.yml
+              path: ${{inputs.path}}/.github/workflows/ci.yml
               text: "test:"
               not: ${{ !inputs.test}}
 
         - name: Check if code-diff context
           uses: ./.github/actions/helper/text-include
           with:
-              path: test/.github/workflows/ci.yml
-              text: "code-diff:"
+              path: ${{inputs.path}}/.github/workflows/ci.yml
+              text: "report-diff:"
               not: ${{ !inputs.code-diff}}
         - name: Check if bundle-size context
           uses: ./.github/actions/helper/text-include
           with:
-              path: test/.github/workflows/ci.yml
+              path: ${{inputs.path}}/.github/workflows/ci.yml
               text: "bundle-analysis:"
               not: ${{ !inputs.bundle-size}}
 
         - name: Check if install-dependencies context
           uses: ./.github/actions/helper/text-include
           with:
-              path: test/.github/workflows/ci.yml
+              path: ${{inputs.path}}/.github/workflows/ci.yml
               text: "install-dependencies:"
               not: ${{ !inputs.install-dependencies}}
 
         - name: Check if build context
           uses: ./.github/actions/helper/text-include
           with:
-              path: test/.github/workflows/ci.yml
+              path: ${{inputs.path}}/.github/workflows/ci.yml
               text: "build:"
               not: ${{ !inputs.build}}
 
         - name: Check if useless-modules context
           uses: ./.github/actions/helper/text-include
           with:
-              path: test/.github/workflows/ci.yml
+              path: ${{inputs.path}}/.github/workflows/ci.yml
               text: "report-useless-modules:"
               not: ${{ !inputs.useless-modules}}
